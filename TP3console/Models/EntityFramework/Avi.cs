@@ -31,4 +31,9 @@ public partial class Avi
     [ForeignKey("Utilisateur")]
     [InverseProperty("Avis")]
     public virtual Utilisateur UtilisateurNavigation { get; set; } = null!;
+
+    public override string ToString()
+    {
+        return "Film : " + this.Film + "\nUtilisateur : " + this.Utilisateur+"\nAvis : "+this.Avis+"\nNote : "+this.Note ;
+    }
 }

@@ -39,4 +39,9 @@ public partial class Categorie
         }
         set { films = value; }
     }
+
+    public override string ToString()
+    {
+        return "ID : "+this.Id+"\nNom : "+this.Nom+"\nDescription"+this.Description;
+    }
 }
