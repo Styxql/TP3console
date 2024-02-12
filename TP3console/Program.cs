@@ -177,6 +177,29 @@ namespace TP3console
             }
             
         }
+        public static void Exo3Q5()
+        {
+            var ctx = new FilmsDbContext();
+
+            var film1 = new Film
+            {
+                Nom = "Film1",
+                Description = "Description1",
+                Categorie = 2 
+            };
+
+            var film2 = new Film
+            {
+                Nom = "Film2",
+                Description = "Description2",
+                Categorie = 5
+            };
+
+            var nouveauxFilms = new List<Film> { film1, film2 };
+
+            ctx.Films.AddRange(nouveauxFilms);
+            ctx.SaveChanges();
+        }
 
     }
 }
