@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ValueGeneration;
+using System.Runtime.CompilerServices;
 using TP3console.Models.EntityFramework;
 
 namespace TP3console
@@ -9,7 +10,7 @@ namespace TP3console
         static void Main(string[] args)
 
         {
-            Exo3Q3();
+            Exo2Q9();
             Console.ReadKey();
         }
         public static void Exo2Q1()
@@ -98,7 +99,17 @@ namespace TP3console
             Film pulpFiction = ctx.Films.FirstOrDefault(c => c.Nom == "Pulp fiction");
             var avis = ctx.Avis.Where(a => a.FilmNavigation.Id == pulpFiction.Id).ToList();
            var noteMoyenne=avis.Average(a => a.Note);
-            Console.WriteLine(pulpFiction.Nom+"Note Moyenne : "+noteMoyenne);
+            Console.WriteLine(pulpFiction.Nom+"Note Moyenne : "+noteMoyenne+"Utilisateur : ");
+
+        }
+
+        public static void Exo2Q9()
+        {
+            var ctx = new FilmsDbContext();
+
+
+            var meilleurUtilisateur = ctx.Avis.OrderByDescending(a => a.Note) .Select(a => new { Utilisateur = a.UtilisateurNavigation.Login, Note = a.Note }).FirstOrDefault();
+            Console.WriteLine($"L'utilisateur avec la meilleure note est : {meilleurUtilisateur.Utilisateur}, Note : {meilleurUtilisateur.Note}");
 
         }
         public static void Exo3()
@@ -158,10 +169,11 @@ namespace TP3console
             {
                 Avi avis = new Avi()
                 {
-                    Note = 10;
+                    Note = 10
+
                   
                 };
-                seven.Avis.Add();
+                seven.Avis.Add(avis);
             }
             
         }
